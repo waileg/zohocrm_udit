@@ -1,0 +1,39 @@
+<?php
+
+$accessToken = "TU_ACCESS_TOKEN";  // Reemplaza con tu access token válido
+
+$url = "https://www.zohoapis.com/crm/v2/Leads";
+
+$data = [
+    "data" => [
+        [
+            "Last_Name" => "Pérez",  // Apellido del alumno
+            "First_Name" => "Juan",  // Nombre del alumno
+            "Email" => "juan.perez@example.com",  // Correo del alumno
+            "Phone" => "123456789",  // Teléfono del alumno
+            "Lead_Source" => "Formulario Web",  // Origen del lead
+            "Company" => "N/A",  // Opcional, Zoho lo requiere
+            "Description" => "Interesado en el curso de Marketing Digital"
+        ]
+    ],
+    "trigger" => ["workflow"]  // Activa workflows si existen
+];
+
+$headers = [
+    "Authorization: Zoho-oauthtoken $accessToken",
+    "Content-Type: application/json"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;  // Muestra la respuesta de Zoho CRM
+
+?>
