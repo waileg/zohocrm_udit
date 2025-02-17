@@ -1,0 +1,31 @@
+const fetch = require("node-fetch");
+
+const accessToken = "TU_ACCESS_TOKEN";
+const url = "https://www.zohoapis.com/crm/v2/Leads";
+
+const leadData = {
+  data: [
+    {
+      Last_Name: "Pérez",
+      First_Name: "Juan",
+      Email: "juan.perez@example.com",
+      Phone: "123456789",
+      Lead_Source: "Formulario Web",
+      Company: "N/A",
+      Description: "Interesado en el curso de Marketing Digital"
+    }
+  ],
+  trigger: ["workflow"]
+};
+
+fetch(url, {
+  method: "POST",
+  headers: {
+    "Authorization": `Zoho-oauthtoken ${accessToken}`,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(leadData)
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
