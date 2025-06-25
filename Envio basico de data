@@ -1,0 +1,20 @@
+curl --location 'https://www.zohoapis.eu/crm/v2/Leads' \
+--header 'Authorization: Zoho-oauthtoken 1000.xxxx.yyyy' \
+--header 'Content-Type: application/json' \
+--data '{
+  "data": [
+    {
+      "First_Name": "Iván",
+      "Last_Name": "Martín",
+      "Email": "ivan@example.com",
+      "Mobile": "+34666111222",
+      "IP": "192.168.1.20",
+      "Titulaci_n_principal": "Grado en Diseño",
+      "Provincia": "Madrid",
+      "Pa_s": "España",
+      "Nivel_de_estudios_internacionales": "Licenciatura",
+      "Tipos_de_estudios": "Universitarios"
+    }
+  ],
+  "trigger": ["workflow"]
+}'
